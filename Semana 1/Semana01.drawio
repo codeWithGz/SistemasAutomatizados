@@ -1,0 +1,154 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="e-C01sIQE0ZUg1X_jP7O">
+    <mxGraphModel dx="1842" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="" mermaidData="{&#xa;  &quot;data&quot;: &quot;flowchart TD\n    subgraph Fronteira[\&quot;Fronteira do Sistema: Porta Automática\&quot;]\n        S_Presenca[\&quot;Entrada: Sensor de Presença\&quot;]\n        Cmd_Emerg[\&quot;Entrada: Comando de Emergência\&quot;]\n        Logica{\&quot;Processamento: Lógica da Porta\&quot;}\n        Motor[\&quot;Saída: Motor da Porta\&quot;]\n        Barreira[\&quot;Realimentação: Sensor de Obstáculo\&quot;]\n        Estado[\&quot;Realimentação: Estado Físico da Porta\&quot;]\n    end\n\n    Perturbacao((\&quot;Perturbação: Obstáculo / Pessoa parada\&quot;))\n    Falha((\&quot;Falha: Sensor Travado / Inválido\&quot;))\n\n    S_Presenca --&gt;|\&quot;Detecta aproximação\&quot;| Logica\n    Cmd_Emerg --&gt;|\&quot;Sinal prioritário\&quot;| Logica\n    Logica --&gt;|\&quot;Comando de ação\&quot;| Motor\n    Motor --&gt;|\&quot;Altera posição\&quot;| Estado\n    Estado --&gt;|\&quot;Confirma posição atual\&quot;| Logica\n    Barreira --&gt;|\&quot;Detecta interrupção\&quot;| Logica\n    Perturbacao -.-&gt;|\&quot;Interrompe barreira\&quot;| Barreira\n    Falha -.-&gt;|\&quot;Envia sinal contínuo incorreto\&quot;| S_Presenca\n    Logica -.-&gt;|\&quot;Comportamento Seguro: Impedir fechamento automático\&quot;| Motor\n\n\n    class S_Presenca,Cmd_Emerg entrada\n    class Logica processo\n    class Motor saida\n    class Barreira,Estado realim\n    class Perturbacao,Falha risco&quot;,&#xa;  &quot;config&quot;: null,&#xa;  &quot;version&quot;: &quot;12&quot;&#xa;}" id="3vrt5bthMyC4uDTkLMtn-1">
+          <mxCell connectable="0" parent="1" style="group;transparentBounds=1;editIcon=1;lockedGroup=0;groupPadding=10;" vertex="1">
+            <mxGeometry as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Fronteira do Sistema: Porta Automática" mermaidId="n:Fronteira" mermaidBaseStyle="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#FDF4FF;strokeColor=#E879F9;fontColor=#000000;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Fronteira do Sistema: Porta Automática" id="3vrt5bthMyC4uDTkLMtn-2">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-1" style="html=1;whiteSpace=nowrap;strokeWidth=1;verticalAlign=top;fillColor=#FDF4FF;strokeColor=#E879F9;fontColor=#000000;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="871" width="678" x="30" y="315" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Entrada: Sensor de Presença" mermaidId="n:S_Presenca" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Entrada: Sensor de Presença" id="3vrt5bthMyC4uDTkLMtn-3">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-2" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="67" width="152" x="465" y="58" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Entrada: Comando de Emergência" mermaidId="n:Cmd_Emerg" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Entrada: Comando de Emergência" id="3vrt5bthMyC4uDTkLMtn-4">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-2" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="87" width="152" x="263" y="48" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Processamento: Lógica da Porta" mermaidId="n:Logica" mermaidBaseStyle="rhombus;html=1;strokeWidth=2;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Processamento: Lógica da Porta" id="3vrt5bthMyC4uDTkLMtn-5">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-2" style="rhombus;html=1;strokeWidth=2;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="208" width="208" x="212" y="240" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Saída: Motor da Porta" mermaidId="n:Motor" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Saída: Motor da Porta" id="3vrt5bthMyC4uDTkLMtn-6">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-2" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="67" width="152" x="369" y="589" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Realimentação: Sensor de Obstáculo" mermaidId="n:Barreira" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Realimentação: Sensor de Obstáculo" id="3vrt5bthMyC4uDTkLMtn-7">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-2" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="87" width="152" x="61" y="48" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Realimentação: Estado Físico da Porta" mermaidId="n:Estado" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Realimentação: Estado Físico da Porta" id="3vrt5bthMyC4uDTkLMtn-8">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-2" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="87" width="152" x="252" y="760" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Detecta aproximação" mermaidId="e:S_Presenca-&gt;Logica#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=0.99;entryX=0.72;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Detecta aproximação" id="3vrt5bthMyC4uDTkLMtn-9">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-2" source="3vrt5bthMyC4uDTkLMtn-3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=0.99;entryX=0.72;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-5">
+            <mxGeometry relative="1" x="0.1457" as="geometry">
+              <Array as="points">
+                <mxPoint x="570" y="125" />
+                <mxPoint x="570" y="245" />
+                <mxPoint x="362" y="245" />
+                <mxPoint x="362" y="271.8" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Sinal prioritário" mermaidId="e:Cmd_Emerg-&gt;Logica#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Sinal prioritário" id="3vrt5bthMyC4uDTkLMtn-10">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-2" source="3vrt5bthMyC4uDTkLMtn-4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-5">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="339" y="210" />
+                <mxPoint x="316" y="210" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Comando de ação" mermaidId="e:Logica-&gt;Motor#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.72;exitY=1;entryX=0.64;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Comando de ação" id="3vrt5bthMyC4uDTkLMtn-11">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-2" source="3vrt5bthMyC4uDTkLMtn-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.72;exitY=1;entryX=0.64;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-6">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="362" y="478" />
+                <mxPoint x="594" y="478" />
+                <mxPoint x="594" y="559" />
+                <mxPoint x="466" y="559" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Altera posição" mermaidId="e:Motor-&gt;Estado#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=0.99;entryX=0.64;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Altera posição" id="3vrt5bthMyC4uDTkLMtn-12">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-2" source="3vrt5bthMyC4uDTkLMtn-6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=0.99;entryX=0.64;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-8">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="445" y="730" />
+                <mxPoint x="350" y="730" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Confirma posição atual" mermaidId="e:Estado-&gt;Logica#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.36;exitY=0;entryX=0.27;entryY=1;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Confirma posição atual" id="3vrt5bthMyC4uDTkLMtn-13">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-2" source="3vrt5bthMyC4uDTkLMtn-8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.36;exitY=0;entryX=0.27;entryY=1;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-5">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="306" y="730" />
+                <mxPoint x="104" y="730" />
+                <mxPoint x="104" y="478" />
+                <mxPoint x="269" y="478" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Detecta interrupção" mermaidId="e:Barreira-&gt;Logica#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=0.99;entryX=0.27;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Detecta interrupção" id="3vrt5bthMyC4uDTkLMtn-14">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-2" source="3vrt5bthMyC4uDTkLMtn-7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=0.99;entryX=0.27;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-5">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="137" y="210" />
+                <mxPoint x="269" y="210" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Comportamento Seguro:&amp;nbsp;&lt;br&gt;Impedir fechamento automático" mermaidId="e:Logica-&gt;Motor#1" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=1;entryX=0.36;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Comportamento Seguro: Impedir fechamento automático" id="3vrt5bthMyC4uDTkLMtn-15">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-2" source="3vrt5bthMyC4uDTkLMtn-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=1;entryX=0.36;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-6">
+            <mxGeometry relative="1" x="-0.2199" y="14" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="316" y="559" />
+                <mxPoint x="423" y="559" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Perturbação: Pessoa parada" mermaidId="n:Perturbacao" mermaidBaseStyle="ellipse;html=1;aspect=fixed;strokeWidth=2;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Perturbação: Obstáculo / Pessoa parada" id="3vrt5bthMyC4uDTkLMtn-16">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-1" style="ellipse;html=1;aspect=fixed;strokeWidth=2;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="184" width="184" x="75" y="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Falha: Sensor Travado" mermaidId="n:Falha" mermaidBaseStyle="ellipse;html=1;aspect=fixed;strokeWidth=2;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Falha: Sensor Travado / Inválido" id="3vrt5bthMyC4uDTkLMtn-17">
+          <mxCell parent="3vrt5bthMyC4uDTkLMtn-1" style="ellipse;html=1;aspect=fixed;strokeWidth=2;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#28253D;fontColor=#28253D;fontFamily=Recursive;fontSize=14;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;labelWidth=120;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" vertex="1">
+            <mxGeometry height="184" width="184" x="479" y="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Interrompe barreira" mermaidId="e:Perturbacao-&gt;Barreira#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Interrompe barreira" id="3vrt5bthMyC4uDTkLMtn-18">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-1" source="3vrt5bthMyC4uDTkLMtn-16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-7">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Envia sinal contínuo incorreto" mermaidId="e:Falha-&gt;S_Presenca#0" mermaidBaseStyle="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=16;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;" mermaidBaseValue="Envia sinal contínuo incorreto" id="3vrt5bthMyC4uDTkLMtn-19">
+          <mxCell edge="1" parent="3vrt5bthMyC4uDTkLMtn-1" source="3vrt5bthMyC4uDTkLMtn-17" style="edgeStyle=orthogonalEdgeStyle;rounded=1;curved=0;dashed=1;dashPattern=2 2;fixDash=1;startArrow=none;endArrow=block;endSize=8;jumpStyle=arc;jumpSize=12;strokeColor=#000000;html=1;fontSize=14;labelBackgroundColor=#cccccc;fontFamily=Recursive;fontColor=#28253D;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;targetPerimeterSpacing=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRecursive;" target="3vrt5bthMyC4uDTkLMtn-3">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <mxCell id="3vrt5bthMyC4uDTkLMtn-35" parent="3vrt5bthMyC4uDTkLMtn-1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="Nome: Gustavo de Cassio Gomes Perez&lt;br&gt;RA: 823116201" vertex="1">
+          <mxGeometry height="100" width="100" x="708" y="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
