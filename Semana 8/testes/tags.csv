@@ -1,0 +1,13 @@
+Nome,Tipo,Unidade,Faixa_Valores,Acesso,Qualidade_Default,Descricao
+LT_101_PV,REAL,%,0.0 a 100.0,R,GOOD,Nivel medido no reservatorio R-101
+LT_101_QUAL,ENUM,-,GOOD | BAD | UNCERTAIN,R,GOOD,Qualidade e confiabilidade da medida do transmissor LT-101
+P101_CMD,BOOL,-,0 (Parar) | 1 (Partir),W,GOOD,Solicitacao remota de partida/parada da bomba de entrada P-101
+P101_RUN,BOOL,-,0 (STOP) | 1 (RUN) | UNKNOWN,R,GOOD,Retorno real de funcionamento da bomba P-101
+P101_FAIL,BOOL,-,0 (Normal) | 1 (Falha),R,GOOD,Indicacao de falha mecanica ou eletrica ativa na bomba P-101
+P102_CMD,BOOL,-,0 (Parar) | 1 (Drenar),W,GOOD,Solicitacao remota da bomba de drenagem P-102
+P102_RUN,BOOL,-,0 (STOP) | 1 (RUN) | UNKNOWN,R,GOOD,Retorno real de funcionamento da bomba de drenagem P-102
+MODE_AUTO,BOOL,-,0 (MANUAL) | 1 (AUTO),R/W,GOOD,Modo de operacao do controle do reservatorio
+MODO_REMOTO,BOOL,-,0 (LOCAL) | 1 (REMOTO),R,GOOD,Autoridade de comando (LOCAL bloqueia comandos da HMI)
+ALM_H,BOOL,-,0 (Normal) | 1 (Ativo >= 75%),R,GOOD,Alarme de nivel alto no reservatorio R-101 (Prioridade Media)
+ALM_HH,BOOL,-,0 (Normal) | 1 (Ativo >= 90%),R,GOOD,Alarme critico de nivel muito alto no R-101 (Prioridade Alta)
+COMM_PLC,BOOL,-,0 (BAD / Sem comunicacao) | 1 (GOOD),R,GOOD,Estado da comunicacao entre o supervisório e o CLP
