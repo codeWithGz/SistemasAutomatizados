@@ -1,0 +1,10 @@
+ID,Categoria,Condicao_Inicial,Estimulo_Evento,START,STOP_OK,EMG_OK,SENSOR_PECA,RESET_LOTE,ET_ou_CV,Saida_Esperada,Obtido,Situacao,Justificativa
+T01,Obrigatorio_TON,TON inativo; START=0,START=1 por 2.0 s (< 3.0 s),1,1,1,0,0,ET = 2.0 s (< PT),MOTOR_DELAY = 0,MOTOR_DELAY = 0,PASSA,Atraso nao concluido (ET < PT) mantem saida desligada
+T02,Obrigatorio_TON,TON inativo; permissivos=1,Manter START=1 por 3.0 s,1,1,1,0,0,ET = 3.0 s (>= PT),MOTOR_DELAY = 1,MOTOR_DELAY = 1,PASSA,Ao atingir PT (3 s) bit Q aciona MOTOR_DELAY
+T03,Obrigatorio_TON,TON contando (ET = 1.5 s),Acionar STOP_OK=0 durante ET,1,0,1,0,0,ET reinicia para 0,MOTOR_DELAY = 0,MOTOR_DELAY = 0,PASSA,STOP_OK interrompe IN e zera temporizador nao retentivo
+T04,Obrigatorio_TON,MOTOR_DELAY=1 (Q=1),Acionar emergencia EMG_OK=0,1,1,0,0,0,ET reinicia para 0,MOTOR_DELAY = 0,MOTOR_DELAY = 0,PASSA,Emergencia remove permissivo e derruba saida imediatamente
+T05,Obrigatorio_TON,Falha liberada; START=0,Restaurar EMG_OK=1 sem START,0,1,1,0,0,ET = 0,MOTOR_DELAY = 0,MOTOR_DELAY = 0,PASSA,Sem religamento automatico apos liberar falha
+C01,Extensao_CTU,CV = 0; permissivos=1,Borda 0->1 em SENSOR_PECA mantida,0,1,1,1,0,CV = 1 (apenas 1x),LOTE_OK = 0,CV = 1; LOTE_OK = 0,PASSA,Transicao de borda evita multiplas contagens por varredura
+C02,Extensao_CTU,CV = 5; permissivos=1,6a borda em SENSOR_PECA,0,1,1,1,0,CV = 6 (>= PV),LOTE_OK = 1,CV = 6; LOTE_OK = 1,PASSA,Ao atingir PV=6 o contador sinaliza lote completo
+R01,Extensao_Reset,CV = 6; MOTOR_DELAY=0,Acionar RESET_LOTE=1 com permissivos,0,1,1,0,1,CV = 0,LOTE_OK = 0,CV = 0; LOTE_OK = 0,PASSA,Reset permitido zera CV e apaga LOTE_OK
+R02,Extensao_Reset,CV = 6; MOTOR_DELAY=1,Tentar RESET_LOTE=1 com motor ligado,1,1,1,0,1,CV mantem 6,LOTE_OK = 1,CV = 6; LOTE_OK = 1,PASSA,Intertravamento impede zerar lote durante operacao ativa
