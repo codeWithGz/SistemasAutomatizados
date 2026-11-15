@@ -1,7 +1,4 @@
 # UC Sistemas Automatizados — Semana 05: Sistemas Sequenciais e GRAFCET/SFC
-
-Repositório da entrega obrigatória da **Semana 05 (TP05 — Atividade 24: Semáforo Veicular Temporizado)** da Unidade Curricular de **Sistemas Automatizados** (Engenharia de Software — USJT, Prof. Calvetti).
-
 ---
 
 ## 🎯 1. Objetivo e Artefatos Entregues
