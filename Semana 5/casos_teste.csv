@@ -1,0 +1,9 @@
+ID,Cenario,Etapa_Atual,Condicao_Temporal_ou_Evento,Transicao_Habilitada,Transicao_Dispara,Proxima_Etapa,VERMELHO,VERDE,AMARELO,Situacao
+F01,Inicializacao do sistema,Nenhuma,t = 0.0 s (Reset / Power-on),Nenhuma,Inicializacao,E0,1,0,0,PASSA
+S01,Fronteira antes de T0,E0,tempo de E0 = 7.9 s (< 8.0 s),T0,Nao,E0,1,0,0,PASSA
+S02,Limite exato de T0,E0,tempo de E0 = 8.0 s (>= 8.0 s),T0,Sim (T0),E1,0,1,0,PASSA
+S03,Fronteira antes de T1,E1,tempo de E1 = 9.9 s (< 10.0 s),T1,Nao,E1,0,1,0,PASSA
+S04,Limite exato de T1,E1,tempo de E1 = 10.0 s (>= 10.0 s),T1,Sim (T1),E2,0,0,1,PASSA
+S05,Fronteira antes de T2,E2,tempo de E2 = 2.9 s (< 3.0 s),T2,Nao,E2,0,0,1,PASSA
+S06,Limite exato de T2 (fechamento),E2,tempo de E2 = 3.0 s (>= 3.0 s),T2,Sim (T2),E0,1,0,0,PASSA
+F02,Falha de temporizador em E1,E1,Timer travado em t < 10.0 s,T1,Nao,E1,0,1,0,PASSA
