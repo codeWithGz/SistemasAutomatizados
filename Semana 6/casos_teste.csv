@@ -1,0 +1,11 @@
+ID,Categoria,Condicao_Inicial,Acao_Evento,EMG_OK,OL_OK,STOP_OK,START,MOTOR_Esperado,RUN_Esperado,READY_Esperado,MOTOR_Obtido,Situacao,Justificativa
+T01,Obrigatorio,M=0; permissivos=1,Acionar START=1,1,1,1,1,1,1,1,1,PASSA,Caminho de partida completo energiza MOTOR e RUN
+T02,Obrigatorio,M=1; permissivos=1,Soltar START=0,1,1,1,0,1,1,1,1,PASSA,Contato auxiliar MOTOR em paralelo mantem o selo
+T03,Obrigatorio,M=1; EMG_OK=1; OL_OK=1,Acionar parada STOP_OK=0,1,1,0,0,0,0,0,0,PASSA,STOP_OK em serie antes do ramo derruba a retencao
+T04,Obrigatorio,M=1; STOP_OK=1; OL_OK=1,Acionar emergencia EMG_OK=0,0,1,1,0,0,0,0,0,PASSA,EMG_OK=0 interrompe continuidade do rung
+T05,Obrigatorio,M=0; EMG_OK=0,Pressionar START=1,0,1,1,1,0,0,0,0,PASSA,Comando START nao vence permissivo de emergencia aberto
+F01,Falha_Retomada,M=1; permissivos=1,Simular sobrecarga OL_OK=0,1,0,1,0,0,0,0,0,PASSA,Falha termica remove comando MOTOR imediatamente
+F02,Falha_Retomada,M=0; OL_OK=0,Tentar partir com START=1,1,0,1,1,0,0,0,0,PASSA,Sobrecarga impede partida mesmo com botao pressionado
+F03,Falha_Retomada,Falha removida; START=0,Restaurar OL_OK=1 sem START,1,1,1,0,0,0,1,0,PASSA,Motor nao religa sozinho apos liberar falha (selo caiu)
+F04,Falha_Retomada,Permissivos=1; M=0,Novo pulso START=1,1,1,1,1,1,1,1,1,PASSA,Retomada controlada exige nova acao intencional de START
+F05,Falha_Retomada,M=1; permissivos=1,Acionar emergencia EMG_OK=0,0,1,1,0,0,0,0,0,PASSA,Emergencia derruba motor em operacao e zera READY
