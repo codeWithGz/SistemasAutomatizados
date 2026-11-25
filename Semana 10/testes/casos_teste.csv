@@ -1,0 +1,7 @@
+ID,Cenario,Estimulo,Resultado_Esperado,Obtido_Documental,Conclusao
+T01,Leitura Modbus Holding Register,Ler referencia 40001 com FC03 (offset 0),SP_NIVEL retornado e convertido pela escala 0.1% em unidade %,Mapa indica offset 0 quantidade 1 (ou 3 com TEMP_REAL) e escala 0.1%,Aprovado
+T02,Endereco Modbus invalido,Solicitar offset fora do mapa (ex. 40099 / offset 98),Excecao 02 (Illegal Data Address) sem retornar valor zero valido,Caso de excecao e tratamento de erro registrados na planilha,Aprovado
+T03,Falha de origem no OPC UA,Interromper comunicacao com servidor Modbus,Tag OPC UA altera StatusCode para Bad/Uncertain e consumidor rejeita valor,Regra de propagacao de qualidade e SourceTimestamp documentada,Aprovado
+T04,Roteamento MQTT por filtro e ACL,Publicar temperatura em fabrica/linha1/tanque101/temperatura,HMI (fabrica/linha1/+/temperatura) e Historico recebem; cliente sem ACL nao recebe,Casos positivos e negativos validados na aba Roteamento_Core,Aprovado
+T05,Mensagem retida (RETAIN),Conectar novo assinante ao topico de estado atual com RETAIN=true,Novo assinante recebe ultimo estado valido com timestamp para avaliar atualidade,Contrato MQTT diferencia estado retido de evento transitorio,Aprovado
+T06,Tentativa de publicacao nao autorizada,Cliente sem permissao tenta publicar em fabrica/linha1/tanque101/#,Broker recusa operacao via ACL e registra evento de seguranca,Matriz de ACL por cliente e controles de zona documentados,Aprovado

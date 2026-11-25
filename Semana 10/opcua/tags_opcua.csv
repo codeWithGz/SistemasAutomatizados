@@ -1,0 +1,6 @@
+NodeId,BrowseName,Descricao,DataType,EngineeringUnits,AccessLevel,UserAccessLevel,Origem_Modbus,StatusCode_Esperado,Politica_Timestamp
+ns=2;s=P101.Cmd,StartCommand,Solicitacao remota de partida/parada da bomba P-101,Boolean,-,CurrentReadWrite,CurrentWrite (Operador autorizado),00001/FC05,Good (Bad se falha Modbus),SourceTimestamp e ServerTimestamp obrigatorios
+ns=2;s=P101.Run,Running,Retorno real de funcionamento da bomba P-101,Boolean,-,CurrentRead,CurrentRead,10001/FC02,Good (Bad se falha Modbus),SourceTimestamp obrigatorio
+ns=2;s=T101.LevelRaw,LevelRaw,Leitura bruta do transmissor de nivel LT-101,UInt16,count,CurrentRead,CurrentRead,30001/FC04,Good (Bad/Uncertain se fora de faixa),SourceTimestamp obrigatorio
+ns=2;s=T101.LevelSP,LevelSetpoint,Setpoint de nivel do tanque T-101 convertido pela escala 0.1%,Double,%,CurrentReadWrite,CurrentReadWrite (Operador/Engenharia),40001/FC03/06,Good (Bad se falha Modbus),SourceTimestamp e ServerTimestamp obrigatorios
+ns=2;s=T101.Temp,Temperature,Temperatura medida do tanque T-101,Double,°C,CurrentRead,CurrentRead,40002-3/FC03,Good (Bad/Uncertain se falha Modbus ou expirado),SourceTimestamp obrigatorio

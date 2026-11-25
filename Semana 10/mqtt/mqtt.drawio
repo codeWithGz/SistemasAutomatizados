@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-11-25T10:35:00.000Z" agent="TP10-Generator" version="24.7.17">
+  <diagram id="tp10-t101" name="TP10 Integracao T-101">
+    <mxGraphModel dx="1220" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ZONA DE CONTROLE -->
+        <mxCell id="z_ctrl" value="ZONA DE CONTROLE (Operacao Deterministica - Sem acesso direto do Broker MQTT)" style="swimlane;horizontal=1;startSize=28;fillColor=#e3f2fd;strokeColor=#1565c0;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="1080" height="145" as="geometry"/>
+        </mxCell>
+        <mxCell id="clp" value="CLP T-101&#10;Logica local e intertravamentos&#10;(P-101 / LT-101 / TT-101)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1565c0;fontStyle=1;" vertex="1" parent="z_ctrl">
+          <mxGeometry x="60" y="48" width="240" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="rio" value="E/S Remota&#10;Sensores e Atuadores&#10;Tanque T-101" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1565c0;fontStyle=1;" vertex="1" parent="z_ctrl">
+          <mxGeometry x="410" y="48" width="220" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="mb_srv" value="Servidor Modbus (Legado)&#10;Coils: 00001 | DI: 10001&#10;IR: 30001 | HR: 40001-40003" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1565c0;fontStyle=1;" vertex="1" parent="z_ctrl">
+          <mxGeometry x="740" y="48" width="270" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_clp_rio" value="Controle local" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=2;strokeColor=#1565c0;" edge="1" parent="z_ctrl" source="clp" target="rio">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_rio_mb" value="Mapa de memoria" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=2;strokeColor=#1565c0;" edge="1" parent="z_ctrl" source="rio" target="mb_srv">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ZONA DE INTEGRACAO -->
+        <mxCell id="z_int" value="ZONA DE INTEGRACAO (Normalizacao Semantica, Conversao e Fronteira de Seguranca)" style="swimlane;horizontal=1;startSize=28;fillColor=#ede7f6;strokeColor=#5e35b1;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="250" width="1080" height="155" as="geometry"/>
+        </mxCell>
+        <mxCell id="gw_opc" value="Gateway / Servidor OPC UA&#10;AddressSpace: ns=2;s=T101.* / P101.*&#10;StatusCode + SourceTimestamp&#10;Politica: Certificados + SignAndEncrypt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5e35b1;fontStyle=1;" vertex="1" parent="z_int">
+          <mxGeometry x="130" y="42" width="330" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="pub_mqtt" value="Publisher MQTT (ID: pub-t101)&#10;ACL: PUBLISH fabrica/linha1/tanque101/#&#10;Payload JSON + QoS 1 + RETAIN (estado)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#5e35b1;fontStyle=1;" vertex="1" parent="z_int">
+          <mxGeometry x="620" y="42" width="340" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_opc_pub" value="Leitura autorizada OPC UA&#10;(somente tags selecionadas)" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#5e35b1;" edge="1" parent="z_int" source="gw_opc" target="pub_mqtt">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ZONA DE SERVICOS -->
+        <mxCell id="z_srv" value="ZONA DE SERVICOS (Distribuicao Desacoplada MQTT com TLS 1.2+, Autenticacao e ACL por Topico)" style="swimlane;horizontal=1;startSize=28;fillColor=#e8f5e9;strokeColor=#2e7d32;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="485" width="1080" height="245" as="geometry"/>
+        </mxCell>
+        <mxCell id="broker" value="Broker MQTT&#10;TLS + Auth + ACL&#10;(Roteia topicos; nao executa&#10;logica do processo)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e3a5f;fontColor=#ffffff;strokeColor=#102a43;fontStyle=1;" vertex="1" parent="z_srv">
+          <mxGeometry x="50" y="75" width="230" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="hmi" value="HMI (hmi-linha1)&#10;SUB: fabrica/linha1/+/temperatura&#10;ACL: fabrica/linha1/+/+" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2e7d32;fontStyle=1;" vertex="1" parent="z_srv">
+          <mxGeometry x="450" y="38" width="270" height="62" as="geometry"/>
+        </mxCell>
+        <mxCell id="hist" value="Historico (historiador)&#10;SUB: fabrica/+/+/temperatura&#10;QoS 1 (trata duplicidade)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#2e7d32;fontStyle=1;" vertex="1" parent="z_srv">
+          <mxGeometry x="450" y="112" width="270" height="58" as="geometry"/>
+        </mxCell>
+        <mxCell id="alm" value="Alarmes (alarme-t101)&#10;SUB: fabrica/linha1/tanque101/#&#10;Rejeita quality=BAD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#c62828;fontStyle=1;" vertex="1" parent="z_srv">
+          <mxGeometry x="450" y="180" width="270" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="manut" value="Manutencao (manutencao)&#10;SUB: topicos aprovados T-101&#10;Diagnostico restrito" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#f57f17;fontStyle=1;" vertex="1" parent="z_srv">
+          <mxGeometry x="800" y="100" width="240" height="75" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e_brk_hmi" value="TLS + ACL" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#2e7d32;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="z_srv" source="broker" target="hmi">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_brk_hist" value="TLS + ACL" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#2e7d32;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="z_srv" source="broker" target="hist">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_brk_alm" value="TLS + ACL" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#c62828;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="z_srv" source="broker" target="alm">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_brk_man" value="TLS + ACL restrita" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#f57f17;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="z_srv" source="broker" target="manut">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="137"/>
+              <mxPoint x="760" y="137"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- FLUXOS ENTRE ZONAS -->
+        <mxCell id="e_mb_gw" value="Modbus TCP (FC01-FC06) | Firewall + IP fixo + Funcao minima" style="endArrow=classic;startArrow=classic;html=1;strokeWidth=2;strokeColor=#1565c0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="mb_srv" target="gw_opc">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_pub_brk" value="PUBLISH (TLS + Auth + QoS 1 + RETAIN)&#10;fabrica/linha1/tanque101/{temperatura,nivel,estado,alarme}" style="endArrow=classic;html=1;strokeWidth=3;strokeColor=#2e7d32;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="pub_mqtt" target="broker">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_block" value="BLOQUEADO (Firewall / Segmentacao: Broker nunca acessa CLP diretamente)" style="endArrow=none;dashed=1;html=1;strokeWidth=2;strokeColor=#c62828;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="broker" target="clp">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="15" y="610"/>
+              <mxPoint x="15" y="114"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
